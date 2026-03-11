@@ -1,0 +1,17 @@
+[
+    {
+        "title": "A Bird on the Wing",
+        "file": "books/A Bird on the Wing.pdf",
+        "cover": "covers/A Bird on the Wing.jpg"
+    },
+    {
+        "title": "Ah, This!",
+        "file": "books/Ah, This!.pdf",
+        "cover": "covers/Ah, This!.jpg"
+    },
+    {
+        "title": "Live Zen",
+        "file": "books/Live Zen.pdf",
+        "cover": "covers/Live Zen.jpg"
+    }
+]

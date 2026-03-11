@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My PDF Library</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: "#8b5cf6"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: #0b0b12;
+            color: #e5e7eb;
+        }
+
+        .book-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        #reader {
+            display: none;
+        }
+
+        #reader canvas {
+            margin: auto;
+            display: block;
+            margin-bottom: 25px;
+        }
+
+        .loader {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 32px 0 #fff, -32px 0 #fff;
+            position: relative;
+            animation: flash 0.5s ease-out infinite alternate;
+        }
+
+        @keyframes flash {
+            0% {
+                background-color: #FFF2;
+                box-shadow: 32px 0 #FFF2, -32px 0 #FFF;
+            }
+
+            50% {
+                background-color: #FFF;
+                box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+            }
+
+            100% {
+                background-color: #FFF2;
+                box-shadow: 32px 0 #FFF, -32px 0 #FFF2;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="font-sans">
+
+    <!-- NAVBAR -->
+
+    <div class="flex justify-between items-center px-8 py-5 border-b border-gray-800">
+
+        <h1 class="text-xl font-bold text-purple-400">
+            PDF Library
+        </h1>
+
+
+
+        <div class="space-x-6 text-gray-300">
+
+            <button id="homeBtn" class="hover:text-purple-400">
+                Home
+            </button>
+
+            <button id="myBooksBtn" class="hover:text-purple-400">
+                My Books
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- HOME -->
+
+    <div id="homePage" class="p-8">
+
+        <!-- Continue Reading -->
+
+        <div id="continueSection" class="mb-10 hidden">
+
+            <h2 class="text-2xl font-semibold mb-5 text-purple-300">
+                Continue Reading
+            </h2>
+
+            <div id="continueCard"></div>
+
+        </div>
+
+        <!-- Library -->
+
+        <h2 class="text-2xl font-semibold mb-5 text-purple-300">
+            Library
+        </h2>
+
+        <div id="bookGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        </div>
+
+    </div>
+
+
+    <!-- MY BOOKS -->
+
+    <div id="myBooksPage" class="p-8 hidden">
+
+        <h2 class="text-2xl font-semibold mb-5 text-purple-300">
+            My Books
+        </h2>
+
+        <div id="myBooksGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        </div>
+
+    </div>
+
+    <!-- READER -->
+
+    <div id="reader" class="fixed inset-0 bg-black overflow-y-auto">
+
+        <div class="sticky top-0 bg-black p-4 flex items-center gap-5 border-b border-gray-800 z-50">
+
+            <button id="backBtn" class="text-purple-400">
+                ← Back
+            </button>
+
+            <h2 id="readerTitle" class="font-semibold"></h2>
+
+            <!-- SPINNER -->
+            <div id="navLoader" class="w-[30%] hidden flex items-center justify-center">
+                <span class="loader"></span>
+            </div>
+
+            <div class="flex-1"></div>
+
+            <div class="w-1/3 bg-gray-700 h-2 rounded">
+
+                <div id="progressBar" class="bg-purple-500 h-2 rounded w-0"></div>
+
+            </div>
+
+        </div>
+
+        <div id="pdfContainer" class="p-10"></div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
