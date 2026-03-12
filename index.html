@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>My PDF Library</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8b5cf6">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -169,6 +171,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="script.js"></script>
+    <script>
+
+        if ("serviceWorker" in navigator) {
+
+            navigator.serviceWorker.register("service-worker.js")
+                .then(() => console.log("Service Worker Registered"))
+
+        }
+
+    </script>
 
 </body>
 
