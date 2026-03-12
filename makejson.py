@@ -1,9 +1,9 @@
 import os
 import json
 
-# -------- USER INPUT --------
-pdf_folder = input("Enter PDF folder path: ").strip()
-cover_folder = input("Enter Cover images folder path: ").strip()
+# -------- HARDCODED PATHS --------
+pdf_folder = r"Y:\WEB DEVELOPMENT\pdf reader\books"
+cover_folder = r"Y:\WEB DEVELOPMENT\pdf reader\covers"
 
 books = []
 
@@ -12,7 +12,6 @@ for file in os.listdir(pdf_folder):
     if file.lower().endswith(".pdf"):
 
         name = os.path.splitext(file)[0]   # remove .pdf
-        pdf_path = os.path.join(pdf_folder, file)
 
         # Possible cover extensions
         cover_extensions = [".jpg", ".jpeg", ".png"]
@@ -36,7 +35,9 @@ for file in os.listdir(pdf_folder):
             print(f"⚠ Cover not found for {file}")
 
 # -------- SAVE JSON --------
-with open("books.json", "w", encoding="utf-8") as f:
+output_file = os.path.join(os.getcwd(), "books.json")
+
+with open(output_file, "w", encoding="utf-8") as f:
     json.dump(books, f, indent=4)
 
 print("\n✅ books.json created successfully!")

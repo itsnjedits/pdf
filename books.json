@@ -13,5 +13,10 @@
         "title": "Live Zen",
         "file": "books/Live Zen.pdf",
         "cover": "covers/Live Zen.jpg"
+    },
+    {
+        "title": "Zarathustra",
+        "file": "books/Zarathustra.pdf",
+        "cover": "covers/Zarathustra.jpg"
     }
 ]
