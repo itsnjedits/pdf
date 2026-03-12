@@ -1,18 +1,18 @@
 [
     {
-        "title": "A Bird on the Wing",
-        "file": "books/A Bird on the Wing.pdf",
-        "cover": "covers/A Bird on the Wing.jpg"
+        "title": "A Cup of Tea",
+        "file": "books/A Cup of Tea.pdf",
+        "cover": "covers/A Cup of Tea.jpg"
     },
     {
-        "title": "Ah, This!",
-        "file": "books/Ah, This!.pdf",
-        "cover": "covers/Ah, This!.jpg"
+        "title": "A Rose is a Rose is a Rose",
+        "file": "books/A Rose is a Rose is a Rose.pdf",
+        "cover": "covers/A Rose is a Rose is a Rose.jpg"
     },
     {
-        "title": "Live Zen",
-        "file": "books/Live Zen.pdf",
-        "cover": "covers/Live Zen.jpg"
+        "title": "Above All Dont Wobble",
+        "file": "books/Above All Dont Wobble.pdf",
+        "cover": "covers/Above All Dont Wobble.jpg"
     },
     {
         "title": "Zarathustra",
