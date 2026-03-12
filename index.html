@@ -2,186 +2,199 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>My PDF Library</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#8b5cf6">
+<meta charset="UTF-8">
+<title>SoulScript</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8b5cf6">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        accent: "#8b5cf6"
-                    }
-                }
-            }
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        body {
-            background: #0b0b12;
-            color: #e5e7eb;
-        }
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+accent: "#8b5cf6"
+}
+}
+}
+}
+</script>
 
-        .book-card:hover {
-            transform: translateY(-6px) scale(1.02);
-        }
+<style>
 
-        #reader {
-            display: none;
-        }
+body{
+background:#0b0b12;
+color:#e5e7eb;
+}
 
-        #reader canvas {
-            margin: auto;
-            display: block;
-            margin-bottom: 25px;
-        }
+.book-card:hover{
+transform:translateY(-6px) scale(1.03);
+}
 
-        .loader {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: #fff;
-            box-shadow: 32px 0 #fff, -32px 0 #fff;
-            position: relative;
-            animation: flash 0.5s ease-out infinite alternate;
-        }
+#reader{
+display:none;
+}
 
-        @keyframes flash {
-            0% {
-                background-color: #FFF2;
-                box-shadow: 32px 0 #FFF2, -32px 0 #FFF;
-            }
+#reader canvas{
+margin:auto;
+display:block;
+margin-bottom:25px;
+}
 
-            50% {
-                background-color: #FFF;
-                box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
-            }
+.loader{
+width:16px;
+height:16px;
+border-radius:50%;
+background-color:#fff;
+box-shadow:32px 0 #fff,-32px 0 #fff;
+position:relative;
+animation:flash 0.5s ease-out infinite alternate;
+}
 
-            100% {
-                background-color: #FFF2;
-                box-shadow: 32px 0 #FFF, -32px 0 #FFF2;
-            }
-        }
-    </style>
+@keyframes flash{
+0%{
+background-color:#FFF2;
+box-shadow:32px 0 #FFF2,-32px 0 #FFF;
+}
 
+50%{
+background-color:#FFF;
+box-shadow:32px 0 #FFF2,-32px 0 #FFF2;
+}
+
+100%{
+background-color:#FFF2;
+box-shadow:32px 0 #FFF,-32px 0 #FFF2;
+}
+}
+
+</style>
 </head>
 
 <body class="font-sans">
 
-    <!-- NAVBAR -->
+<!-- NAVBAR -->
 
-    <div class="flex justify-between items-center px-8 py-5 border-b border-gray-800">
+<div class="flex flex-col items-center py-6 border-b border-gray-800 space-y-4">
 
-        <h1 class="text-xl font-bold text-purple-400">
-            PDF Library
-        </h1>
+<h1 class="text-4xl font-extrabold text-center 
+bg-gradient-to-b from-purple-300 to-purple-600 
+bg-clip-text text-transparent tracking-wide">
 
+SoulScript
 
+</h1>
 
-        <div class="space-x-6 text-gray-300">
+<div class="flex gap-8 text-gray-300 text-lg">
 
-            <button id="homeBtn" class="hover:text-purple-400">
-                Home
-            </button>
+<button id="homeBtn" class="hover:text-purple-400 transition">
+Home
+</button>
 
-            <button id="myBooksBtn" class="hover:text-purple-400">
-                My Books
-            </button>
+<button id="myBooksBtn" class="hover:text-purple-400 transition">
+My Books
+</button>
 
-        </div>
+</div>
 
-    </div>
-
-    <!-- HOME -->
-
-    <div id="homePage" class="p-8">
-
-        <!-- Continue Reading -->
-
-        <div id="continueSection" class="mb-10 hidden">
-
-            <h2 class="text-2xl font-semibold mb-5 text-purple-300">
-                Continue Reading
-            </h2>
-
-            <div id="continueCard"></div>
-
-        </div>
-
-        <!-- Library -->
-
-        <h2 class="text-2xl font-semibold mb-5 text-purple-300">
-            Library
-        </h2>
-
-        <div id="bookGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        </div>
-
-    </div>
+</div>
 
 
-    <!-- MY BOOKS -->
+<!-- HOME -->
 
-    <div id="myBooksPage" class="p-8 hidden">
+<div id="homePage" class="p-6 md:p-10 max-w-6xl mx-auto">
 
-        <h2 class="text-2xl font-semibold mb-5 text-purple-300">
-            My Books
-        </h2>
+<!-- Continue Reading -->
 
-        <div id="myBooksGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        </div>
+<div id="continueSection" class="mb-12 hidden">
 
-    </div>
+<h2 class="text-3xl font-semibold mb-6 text-purple-300 text-center">
+Continue Reading
+</h2>
 
-    <!-- READER -->
+<div id="continueCard"></div>
 
-    <div id="reader" class="fixed inset-0 bg-black overflow-y-auto">
+</div>
 
-        <div class="sticky top-0 bg-black p-4 flex items-center gap-5 border-b border-gray-800 z-50">
 
-            <button id="backBtn" class="text-purple-400">
-                ← Back
-            </button>
+<!-- Library -->
 
-            <h2 id="readerTitle" class="font-semibold"></h2>
+<h2 class="text-3xl font-semibold mb-8 text-purple-300 text-center">
+Library
+</h2>
 
-            <!-- SPINNER -->
-            <div id="navLoader" class="w-[30%] hidden flex items-center justify-center">
-                <span class="loader"></span>
-            </div>
+<div id="bookGrid"
+class="grid grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <div class="flex-1"></div>
+</div>
 
-            <div class="w-1/3 bg-gray-700 h-2 rounded">
+</div>
 
-                <div id="progressBar" class="bg-purple-500 h-2 rounded w-0"></div>
 
-            </div>
 
-        </div>
+<!-- MY BOOKS -->
 
-        <div id="pdfContainer" class="p-10"></div>
+<div id="myBooksPage" class="p-6 md:p-10 max-w-6xl mx-auto hidden">
 
-    </div>
+<h2 class="text-3xl font-semibold mb-8 text-purple-300 text-center">
+My Books
+</h2>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="script.js"></script>
-    <script>
+<div id="myBooksGrid"
+class="grid grid-cols-2 lg:grid-cols-4 gap-8">
 
-        if ("serviceWorker" in navigator) {
+</div>
 
-            navigator.serviceWorker.register("service-worker.js")
-                .then(() => console.log("Service Worker Registered"))
+</div>
 
-        }
 
-    </script>
+
+<!-- READER -->
+
+<div id="reader" class="fixed inset-0 bg-black overflow-y-auto">
+
+<div class="sticky top-0 bg-black p-4 flex items-center gap-5 border-b border-gray-800 z-50">
+
+<button id="backBtn" class="text-purple-400 hover:text-purple-300">
+← Back
+</button>
+
+<h2 id="readerTitle" class="font-semibold text-lg"></h2>
+
+<div id="navLoader" class="w-[30%] hidden flex items-center justify-center">
+<span class="loader"></span>
+</div>
+
+<div class="flex-1"></div>
+
+<div class="w-1/3 bg-gray-700 h-2 rounded">
+
+<div id="progressBar" class="bg-purple-500 h-2 rounded w-0"></div>
+
+</div>
+
+</div>
+
+<div id="pdfContainer" class="p-10"></div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register("service-worker.js")
+.then(()=>console.log("Service Worker Registered"))
+
+}
+
+</script>
 
 </body>
-
 </html>
