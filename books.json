@@ -1,22 +1,27 @@
 [
     {
-        "title": "A Cup of Tea",
-        "file": "books/A Cup of Tea.pdf",
-        "cover": "covers/A Cup of Tea.jpg"
+        "title": "CREATIVITY",
+        "file": "books/CREATIVITY.pdf",
+        "cover": "covers/CREATIVITY.jpg"
     },
     {
-        "title": "A Rose is a Rose is a Rose",
-        "file": "books/A Rose is a Rose is a Rose.pdf",
-        "cover": "covers/A Rose is a Rose is a Rose.jpg"
+        "title": "The Book Of Man",
+        "file": "books/The Book Of Man.pdf",
+        "cover": "covers/The Book Of Man.jpg"
     },
     {
-        "title": "Above All Dont Wobble",
-        "file": "books/Above All Dont Wobble.pdf",
-        "cover": "covers/Above All Dont Wobble.jpg"
+        "title": "The Power Of Love",
+        "file": "books/The Power Of Love.pdf",
+        "cover": "covers/The Power Of Love.jpg"
     },
     {
-        "title": "Zarathustra",
-        "file": "books/Zarathustra.pdf",
-        "cover": "covers/Zarathustra.jpg"
+        "title": "The Rebel",
+        "file": "books/The Rebel.pdf",
+        "cover": "covers/The Rebel.jpg"
+    },
+    {
+        "title": "The Secret",
+        "file": "books/The Secret.pdf",
+        "cover": "covers/The Secret.jpg"
     }
 ]
