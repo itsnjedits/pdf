@@ -1,4 +1,4 @@
-const CACHE_NAME = "pdf-library-v2"
+const CACHE_NAME = "pdf-library-v3"
 
 const urlsToCache = [
 "/",

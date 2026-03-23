@@ -2,31 +2,49 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<title>SoulScript</title>
+    <meta charset="UTF-8">
+    <title>SoulScript</title>
 
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#8b5cf6">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8b5cf6">
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<script>
-tailwind.config = {
-theme: {
-extend: {
-colors: {
-accent: "#8b5cf6"
-}
-}
-}
-}
-</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: "#8b5cf6"
+                    }
+                }
+            }
+        }
+    </script>
 
-<style>
+    <style>
 
 body{
 background:#0b0b12;
 color:#e5e7eb;
+}
+
+/* DARK SCROLLBAR (BLACK-GRAY ONLY) */
+::-webkit-scrollbar {
+width: 10px;
+}
+
+::-webkit-scrollbar-track {
+background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+background: #444;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #666;
 }
 
 .book-card:hover{
@@ -58,12 +76,10 @@ animation:flash 0.5s ease-out infinite alternate;
 background-color:#FFF2;
 box-shadow:32px 0 #FFF2,-32px 0 #FFF;
 }
-
 50%{
 background-color:#FFF;
 box-shadow:32px 0 #FFF2,-32px 0 #FFF2;
 }
-
 100%{
 background-color:#FFF2;
 box-shadow:32px 0 #FFF,-32px 0 #FFF2;
@@ -75,126 +91,125 @@ box-shadow:32px 0 #FFF,-32px 0 #FFF2;
 
 <body class="font-sans">
 
-<!-- NAVBAR -->
+    <!-- NAVBAR -->
 
-<div class="flex flex-col items-center py-6 border-b border-gray-800 space-y-4">
+    <div class="flex flex-col items-center py-6 border-b border-gray-800 space-y-4">
 
-<h1 class="text-4xl font-extrabold text-center 
+        <h1 class="text-4xl font-extrabold text-center 
 bg-gradient-to-b from-purple-300 to-purple-600 
 bg-clip-text text-transparent tracking-wide">
 
-SoulScript
+            SoulScript
 
-</h1>
+        </h1>
 
-<div class="flex gap-8 text-gray-300 text-lg">
+        <div class="flex gap-8 text-gray-300 text-lg">
 
-<button id="homeBtn" class="hover:text-purple-400 transition">
-Home
-</button>
+            <button id="homeBtn" class="hover:text-purple-400 transition">
+                Home
+            </button>
 
-<button id="myBooksBtn" class="hover:text-purple-400 transition">
-My Books
-</button>
+            <button id="myBooksBtn" class="hover:text-purple-400 transition">
+                My Books
+            </button>
 
-</div>
+        </div>
 
-</div>
-
-
-<!-- HOME -->
-
-<div id="homePage" class="p-6 md:p-10 max-w-6xl mx-auto">
-
-<!-- Continue Reading -->
-
-<div id="continueSection" class="mb-12 hidden">
-
-<h2 class="text-3xl font-semibold mb-6 text-purple-300 text-center">
-Continue Reading
-</h2>
-
-<div id="continueCard"></div>
-
-</div>
+    </div>
 
 
-<!-- Library -->
+    <!-- HOME -->
 
-<h2 class="text-3xl font-semibold mb-8 text-purple-300 text-center">
-Library
-</h2>
+    <div id="homePage" class="p-6 md:p-10 max-w-6xl mx-auto">
 
-<div id="bookGrid"
-class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Continue Reading -->
 
-</div>
+        <div id="continueSection" class="mb-12 hidden">
 
-</div>
+            <h2 class="text-3xl font-semibold mb-6 text-purple-300 text-center">
+                Continue Reading
+            </h2>
+
+            <div id="continueCard"></div>
+
+        </div>
 
 
+        <!-- Library -->
 
-<!-- MY BOOKS -->
+        <h2 class="text-3xl font-semibold mb-8 text-purple-300 text-center">
+            Library
+        </h2>
 
-<div id="myBooksPage" class="p-6 md:p-10 max-w-6xl mx-auto hidden">
+        <div id="bookGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-8">
 
-<h2 class="text-3xl font-semibold mb-8 text-purple-300 text-center">
-My Books
-</h2>
+        </div>
 
-<div id="myBooksGrid"
-class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-
-</div>
-
-</div>
+    </div>
 
 
 
-<!-- READER -->
+    <!-- MY BOOKS -->
 
-<div id="reader" class="fixed inset-0 bg-black overflow-y-auto">
+    <div id="myBooksPage" class="p-6 md:p-10 max-w-6xl mx-auto hidden">
 
-<div class="sticky top-0 bg-black p-4 flex items-center gap-5 border-b border-gray-800 z-50">
+        <h2 class="text-3xl font-semibold mb-8 text-purple-300 text-center">
+            My Books
+        </h2>
 
-<button id="backBtn" class="text-purple-400 hover:text-purple-300">
-← Back
-</button>
+        <div id="myBooksGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-8">
 
-<h2 id="readerTitle" class="font-semibold text-lg"></h2>
+        </div>
 
-<div id="navLoader" class="w-[30%] hidden flex items-center justify-center">
-<span class="loader"></span>
-</div>
-
-<div class="flex-1"></div>
-
-<div class="w-1/3 bg-gray-700 h-2 rounded">
-
-<div id="progressBar" class="bg-purple-500 h-2 rounded w-0"></div>
-
-</div>
-
-</div>
-
-<div id="pdfContainer" class="p-10"></div>
-
-</div>
+    </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="script.js"></script>
 
-<script>
+    <!-- READER -->
 
-if("serviceWorker" in navigator){
+    <div id="reader" class="fixed inset-0 bg-black overflow-y-auto">
 
-navigator.serviceWorker.register("service-worker.js")
-.then(()=>console.log("Service Worker Registered"))
+        <div class="sticky top-0 bg-black p-4 flex items-center gap-5 border-b border-gray-800 z-50">
 
-}
+            <button id="backBtn" class="text-purple-400 hover:text-purple-300">
+                ← Back
+            </button>
 
-</script>
+            <h2 id="readerTitle" class="font-semibold text-lg"></h2>
+
+            <div id="navLoader" class="w-[30%] hidden flex items-center justify-center">
+                <span class="loader"></span>
+            </div>
+
+            <div class="flex-1"></div>
+
+            <div class="w-1/3 bg-gray-700 h-2 rounded">
+
+                <div id="progressBar" class="bg-purple-500 h-2 rounded w-0"></div>
+
+            </div>
+
+        </div>
+
+        <div id="pdfContainer" class="p-10"></div>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+
+        if ("serviceWorker" in navigator) {
+
+            navigator.serviceWorker.register("service-worker.js")
+                .then(() => console.log("Service Worker Registered"))
+
+        }
+
+    </script>
 
 </body>
+
 </html>

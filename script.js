@@ -1,78 +1,62 @@
-let books=[]
-let currentBook=null
+let books = [];
+let currentBook = null;
 
-const bookGrid=document.getElementById("bookGrid")
-const myBooksGrid=document.getElementById("myBooksGrid")
+const bookGrid = document.getElementById("bookGrid");
+const myBooksGrid = document.getElementById("myBooksGrid");
 
-const reader=document.getElementById("reader")
-const pdfContainer=document.getElementById("pdfContainer")
-const readerTitle=document.getElementById("readerTitle")
+const reader = document.getElementById("reader");
+const pdfContainer = document.getElementById("pdfContainer");
+const readerTitle = document.getElementById("readerTitle");
 
-const progressBar=document.getElementById("progressBar")
+const progressBar = document.getElementById("progressBar");
 
-const homePage=document.getElementById("homePage")
-const myBooksPage=document.getElementById("myBooksPage")
+const homePage = document.getElementById("homePage");
+const myBooksPage = document.getElementById("myBooksPage");
 
-const continueSection=document.getElementById("continueSection")
-const continueCard=document.getElementById("continueCard")
+const continueSection = document.getElementById("continueSection");
+const continueCard = document.getElementById("continueCard");
 
-const navLoader=document.getElementById("navLoader")
+const navLoader = document.getElementById("navLoader");
 
-let pdfDoc=null
-let trackerInterval=null
-
-
-
-// ------------------ SPINNER CONTROL ------------------
-
-function showNavSpinner(){
-console.log("[UI] Showing navbar spinner")
-navLoader.classList.remove("hidden")
-}
-
-function hideNavSpinner(){
-console.log("[UI] Hiding navbar spinner")
-navLoader.classList.add("hidden")
-}
-
+let pdfDoc = null;
+let trackerInterval = null;
 
 // ------------------ LOAD BOOKS ------------------
 
 fetch("books.json")
-.then(res=>res.json())
-.then(data=>{
-
-console.log("[Library] Books JSON loaded")
-
-books=data
-
-renderLibrary()
-renderMyBooks()
-loadContinue()
-
-})
-
-
+  .then((res) => res.json())
+  .then((data) => {
+    books = data;
+    renderLibrary();
+    renderMyBooks();
+    loadContinue();
+  });
 
 // ------------------ LIBRARY ------------------
 
-function renderLibrary(){
+function renderLibrary() {
+  bookGrid.innerHTML = "";
 
-console.log("[Library] Rendering main library")
+  let progressData = JSON.parse(
+    localStorage.getItem("readingProgress") || "{}",
+  );
 
-bookGrid.innerHTML=""
+  books.forEach((book) => {
+    let progress = progressData[book.file]?.progress || 0;
 
-books.forEach(book=>{
+    let card = document.createElement("div");
+    card.className =
+      "book-card bg-[#111] rounded-xl p-4 shadow-lg cursor-pointer";
 
-let card=document.createElement("div")
+    card.innerHTML = `
 
-card.className="book-card bg-[#111] rounded-xl p-4 shadow-lg"
-
-card.innerHTML=`
-
-<img src="${book.cover}" class="rounded mb-3">
+<img src="${book.cover}" class="rounded mb-3 w-full h-40 object-cover">
 
 <h3 class="text-sm mb-2">${book.title}</h3>
+
+<div class="flex justify-between items-center mb-2">
+
+</div>
 
 <div class="flex gap-2">
 
@@ -84,67 +68,62 @@ Read
 Add
 </button>
 
+<div class="text-xs bg-gray-800 px-2 py-1 rounded">
+${progress}%
 </div>
-`
 
-card.querySelector(".openBook").onclick=()=>openBook(book)
-card.querySelector(".addBook").onclick=()=>addToMyBooks(book)
+</div>
+`;
 
-bookGrid.appendChild(card)
+    // FULL CARD CLICK
+    card.onclick = (e) => {
+      if (e.target.tagName !== "BUTTON") {
+        openBook(book);
+      }
+    };
 
-})
+    card.querySelector(".openBook").onclick = () => openBook(book);
+    card.querySelector(".addBook").onclick = () => addToMyBooks(book);
 
+    bookGrid.appendChild(card);
+  });
 }
-
-
 
 // ------------------ MY BOOKS ------------------
 
-function addToMyBooks(book){
+function addToMyBooks(book) {
+  let myBooks = JSON.parse(localStorage.getItem("myBooks") || "[]");
 
-console.log("[MyBooks] Adding book:",book.title)
-
-let myBooks=JSON.parse(localStorage.getItem("myBooks")||"[]")
-
-if(!myBooks.find(b=>b.file===book.file)){
-
-myBooks.push(book)
-
-localStorage.setItem("myBooks",JSON.stringify(myBooks))
-
-console.log("[MyBooks] Book added")
-
-renderMyBooks()
-
-}else{
-
-console.log("[MyBooks] Book already exists")
-
+  if (!myBooks.find((b) => b.file === book.file)) {
+    myBooks.push(book);
+    localStorage.setItem("myBooks", JSON.stringify(myBooks));
+    renderMyBooks();
+  }
 }
 
-}
+function renderMyBooks() {
+  myBooksGrid.innerHTML = "";
 
+  let myBooks = JSON.parse(localStorage.getItem("myBooks") || "[]");
+  let progressData = JSON.parse(
+    localStorage.getItem("readingProgress") || "{}",
+  );
 
+  myBooks.forEach((book) => {
+    let progress = progressData[book.file]?.progress || 0;
 
-function renderMyBooks(){
+    let card = document.createElement("div");
+    card.className = "bg-[#111] rounded-xl p-4 cursor-pointer";
 
-console.log("[MyBooks] Rendering My Books")
+    card.innerHTML = `
 
-myBooksGrid.innerHTML=""
-
-let myBooks=JSON.parse(localStorage.getItem("myBooks")||"[]")
-
-myBooks.forEach(book=>{
-
-let card=document.createElement("div")
-
-card.className="bg-[#111] rounded-xl p-4"
-
-card.innerHTML=`
-
-<img src="${book.cover}" class="rounded mb-3">
+<img src="${book.cover}" class="rounded mb-3 w-full h-40 object-cover">
 
 <h3 class="text-sm mb-2">${book.title}</h3>
+
+<div class="flex justify-between items-center mb-2">
+
+</div>
 
 <div class="flex gap-2">
 
@@ -156,259 +135,165 @@ Read
 Remove
 </button>
 
+<div class="text-xs bg-gray-800 px-2 py-1 rounded">
+${progress}%
 </div>
-`
 
-card.querySelector("button").onclick=()=>openBook(book)
-card.querySelector(".remove").onclick=()=>removeMyBook(book)
+</div>
+`;
 
-myBooksGrid.appendChild(card)
+    // FULL CARD CLICK
+    card.onclick = (e) => {
+      if (e.target.tagName !== "BUTTON") {
+        openBook(book);
+      }
+    };
 
-})
+    card.querySelector("button").onclick = () => openBook(book);
+    card.querySelector(".remove").onclick = () => removeMyBook(book);
 
+    myBooksGrid.appendChild(card);
+  });
 }
 
+function removeMyBook(book) {
+  let myBooks = JSON.parse(localStorage.getItem("myBooks"));
 
+  myBooks = myBooks.filter((b) => b.file !== book.file);
 
-function removeMyBook(book){
+  localStorage.setItem("myBooks", JSON.stringify(myBooks));
 
-console.log("[MyBooks] Removing book:",book.title)
-
-let myBooks=JSON.parse(localStorage.getItem("myBooks"))
-
-myBooks=myBooks.filter(b=>b.file!==book.file)
-
-localStorage.setItem("myBooks",JSON.stringify(myBooks))
-
-renderMyBooks()
-
+  renderMyBooks();
 }
-
-
 
 // ------------------ OPEN BOOK ------------------
 
-async function openBook(book){
+async function openBook(book) {
+  currentBook = book;
 
-console.log("[Reader] Book opened:",book.file)
+  localStorage.setItem("lastOpenedBook", book.file);
 
-currentBook=book
+  readerTitle.innerText = book.title;
 
-localStorage.setItem("lastOpenedBook",book.file)
+  homePage.style.display = "none";
+  myBooksPage.style.display = "none";
+  reader.style.display = "block";
 
-readerTitle.innerText=book.title
+  pdfContainer.innerHTML = "";
 
-homePage.style.display="none"
-myBooksPage.style.display="none"
-reader.style.display="block"
+  stopTracking();
 
-pdfContainer.innerHTML=""
+  navLoader.classList.remove("hidden");
 
-stopTracking()
+  try {
+    pdfDoc = await pdfjsLib.getDocument(book.file).promise;
 
-// 🔵 SHOW NAVBAR SPINNER
-showNavSpinner()
+    for (let i = 1; i <= pdfDoc.numPages; i++) {
+      let page = await pdfDoc.getPage(i);
 
-console.log("[Reader] Loading PDF...")
-console.log("[PDF] Loading started")
+      let viewport = page.getViewport({ scale: 1.4 });
 
-try{
+      let canvas = document.createElement("canvas");
 
-pdfDoc=await pdfjsLib.getDocument(book.file).promise
+      let ctx = canvas.getContext("2d");
 
-console.log("[PDF] Document loaded")
-console.log("[PDF] Total pages:",pdfDoc.numPages)
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
 
-for(let i=1;i<=pdfDoc.numPages;i++){
+      await page.render({
+        canvasContext: ctx,
+        viewport: viewport,
+      }).promise;
 
-console.log(`[PDF] Rendering page ${i}...`)
+      pdfContainer.appendChild(canvas);
+    }
+  } catch (err) {
+    console.error(err);
+  }
 
-let page=await pdfDoc.getPage(i)
+  navLoader.classList.add("hidden");
 
-let viewport=page.getViewport({scale:1.4})
-
-let canvas=document.createElement("canvas")
-
-let ctx=canvas.getContext("2d")
-
-canvas.height=viewport.height
-canvas.width=viewport.width
-
-await page.render({
-canvasContext:ctx,
-viewport:viewport
-}).promise
-
-pdfContainer.appendChild(canvas)
-
-console.log(`[PDF] Page ${i} rendered`)
-
+  setTimeout(() => {
+    restorePosition(book);
+    startTracking();
+  }, 500);
 }
 
-console.log("[PDF] All pages rendered")
-console.log("[Reader] PDF Rendered")
+// ------------------ TRACKING ------------------
 
-}catch(err){
+function startTracking() {
+  if (trackerInterval) clearInterval(trackerInterval);
 
-console.error("[PDF] ERROR while loading PDF:",err)
-
+  trackerInterval = setInterval(() => {
+    saveProgress();
+  }, 5000);
 }
 
-// 🔵 HIDE NAVBAR SPINNER
-hideNavSpinner()
-
-setTimeout(()=>{
-
-console.log("[Reader] Restoring scroll position")
-
-restorePosition(book)
-
-startTracking()
-
-},500)
-
+function stopTracking() {
+  if (trackerInterval) {
+    clearInterval(trackerInterval);
+    trackerInterval = null;
+  }
 }
 
+// ------------------ SAVE ------------------
 
+function saveProgress() {
+  if (!currentBook) return;
 
-// ------------------ TRACKER ------------------
+  let scroll = reader.scrollTop;
+  let total = reader.scrollHeight - reader.clientHeight;
 
-function startTracking(){
+  let progress = Math.floor((scroll / total) * 100);
 
-if(trackerInterval) clearInterval(trackerInterval)
+  progressBar.style.width = progress + "%";
 
-console.log("[Tracker] Scroll tracking started")
+  let data = JSON.parse(localStorage.getItem("readingProgress") || "{}");
 
-trackerInterval=setInterval(()=>{
+  data[currentBook.file] = {
+    scroll: scroll,
+    progress: progress,
+    lastRead: Date.now(),
+  };
 
-saveProgress()
-
-},5000)
-
+  localStorage.setItem("readingProgress", JSON.stringify(data));
 }
 
+// ------------------ RESTORE ------------------
 
+function restorePosition(book) {
+  let data = JSON.parse(localStorage.getItem("readingProgress") || "{}");
 
-function stopTracking(){
+  if (data[book.file]) {
+    reader.scrollTo({
+      top: data[book.file].scroll,
+      behavior: "smooth",
+    });
 
-if(trackerInterval){
-
-clearInterval(trackerInterval)
-
-trackerInterval=null
-
-console.log("[Tracker] Scroll tracking stopped")
-
+    progressBar.style.width = data[book.file].progress + "%";
+  }
 }
 
-}
+// ------------------ CONTINUE ------------------
 
+function loadContinue() {
+  let last = localStorage.getItem("lastOpenedBook");
+  if (!last) return;
 
+  let data = JSON.parse(localStorage.getItem("readingProgress") || "{}");
+  let book = books.find((b) => b.file === last);
 
-// ------------------ SAVE PROGRESS ------------------
+  if (!book) return;
 
-function saveProgress(){
+  let progress = data[last]?.progress || 0;
 
-if(!currentBook) return
+  continueSection.style.display = "block";
 
-let scroll=reader.scrollTop
-let total=reader.scrollHeight-reader.clientHeight
+  continueCard.innerHTML = `
 
-let progress=Math.floor((scroll/total)*100)
+<div class="flex gap-6 bg-[#111] p-6 rounded-xl cursor-pointer">
 
-progressBar.style.width=progress+"%"
-
-let data=JSON.parse(localStorage.getItem("readingProgress")||"{}")
-
-data[currentBook.file]={
-
-scroll:scroll,
-progress:progress,
-lastRead:Date.now()
-
-}
-
-localStorage.setItem("readingProgress",JSON.stringify(data))
-
-console.log("[Tracker] Saving progress")
-console.log("[Tracker] Scroll:",scroll)
-console.log("[Tracker] Progress:",progress+"%")
-
-}
-
-
-
-// ------------------ RESTORE POSITION ------------------
-
-function restorePosition(book){
-
-console.log("[Reader] Checking saved progress...")
-
-let data=JSON.parse(localStorage.getItem("readingProgress")||"{}")
-
-if(data[book.file]){
-
-let savedScroll=data[book.file].scroll
-
-console.log("[Reader] Found saved scroll:",savedScroll)
-
-reader.scrollTo({
-top:savedScroll,
-behavior:"smooth"
-})
-
-progressBar.style.width=data[book.file].progress+"%"
-
-console.log("[Reader] Scroll restored")
-
-}else{
-
-console.log("[Reader] No saved progress")
-
-}
-
-}
-
-
-
-// ------------------ CONTINUE READING ------------------
-
-function loadContinue(){
-
-console.log("[Reader] Checking continue reading section")
-
-let last=localStorage.getItem("lastOpenedBook")
-
-if(!last){
-
-console.log("[Reader] No last opened book")
-
-return
-}
-
-let data=JSON.parse(localStorage.getItem("readingProgress")||"{}")
-
-let book=books.find(b=>b.file===last)
-
-if(!book){
-
-console.log("[Reader] Book not found in library")
-
-return
-}
-
-let progress=data[last]?.progress || 0
-
-continueSection.style.display="block"
-
-console.log("[Reader] Continue book:",book.title)
-console.log("[Reader] Continue progress:",progress+"%")
-
-continueCard.innerHTML=`
-
-<div class="flex gap-6 bg-[#111] p-6 rounded-xl">
-
-<img src="${book.cover}" class="w-32 rounded">
+<img src="${book.cover}" class="w-32 h-44 object-cover rounded">
 
 <div>
 
@@ -423,60 +308,38 @@ Resume Reading
 </div>
 
 </div>
-`
+`;
 
-document.getElementById("resumeBtn").onclick=()=>openBook(book)
+  document.getElementById("resumeBtn").onclick = () => openBook(book);
 
+  continueCard.onclick = (e) => {
+    if (e.target.tagName !== "BUTTON") {
+      openBook(book);
+    }
+  };
 }
 
+// ------------------ NAV ------------------
 
+document.getElementById("homeBtn").onclick = () => {
+  reader.style.display = "none";
+  homePage.style.display = "block";
+  myBooksPage.style.display = "none";
+  stopTracking();
+  loadContinue();
+};
 
-// ------------------ NAVIGATION ------------------
+document.getElementById("myBooksBtn").onclick = () => {
+  reader.style.display = "none";
+  homePage.style.display = "none";
+  myBooksPage.style.display = "block";
+  stopTracking();
+};
 
-document.getElementById("homeBtn").onclick=()=>{
-
-console.log("[Nav] Home clicked")
-
-reader.style.display="none"
-
-homePage.style.display="block"
-myBooksPage.style.display="none"
-
-stopTracking()
-
-loadContinue()
-
-}
-
-
-
-document.getElementById("myBooksBtn").onclick=()=>{
-
-console.log("[Nav] My Books clicked")
-
-reader.style.display="none"
-
-homePage.style.display="none"
-myBooksPage.style.display="block"
-
-stopTracking()
-
-}
-
-
-
-document.getElementById("backBtn").onclick=()=>{
-
-console.log("[Nav] Back to library")
-
-reader.style.display="none"
-
-homePage.style.display="block"
-
-stopTracking()
-
-currentBook=null
-
-loadContinue()
-
-}
+document.getElementById("backBtn").onclick = () => {
+  reader.style.display = "none";
+  homePage.style.display = "block";
+  stopTracking();
+  currentBook = null;
+  loadContinue();
+};
