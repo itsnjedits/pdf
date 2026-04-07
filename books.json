@@ -5,14 +5,19 @@
         "cover": "covers/CREATIVITY.jpg"
     },
     {
-        "title": "Friedrich_Nietzsche_Twilight_of_the_Idols_or_How_to_Philosophize",
-        "file": "books/Friedrich_Nietzsche_Twilight_of_the_Idols_or_How_to_Philosophize.pdf",
-        "cover": "covers/Friedrich_Nietzsche_Twilight_of_the_Idols_or_How_to_Philosophize.jpg"
+        "title": "Friedrich Nietzsche Twilight of the Idols or How to Philosophize",
+        "file": "books/Friedrich Nietzsche Twilight of the Idols or How to Philosophize.pdf",
+        "cover": "covers/Friedrich Nietzsche Twilight of the Idols or How to Philosophize.jpg"
     },
     {
-        "title": "Machiavelli - Castruccio Castracani",
-        "file": "books/Machiavelli - Castruccio Castracani.pdf",
-        "cover": "covers/Machiavelli - Castruccio Castracani.jpg"
+        "title": "Machiavelli   Castruccio Castracani",
+        "file": "books/Machiavelli   Castruccio Castracani.pdf",
+        "cover": "covers/Machiavelli   Castruccio Castracani.jpg"
+    },
+    {
+        "title": "Machiavelli ''Discourse or dialogue concerning our language'' 1515",
+        "file": "books/Machiavelli ''Discourse or dialogue concerning our language'' 1515.pdf",
+        "cover": "covers/Machiavelli ''Discourse or dialogue concerning our language'' 1515.jpg"
     },
     {
         "title": "Machiavelli,+The+Prince",
@@ -20,39 +25,34 @@
         "cover": "covers/Machiavelli,+The+Prince.jpg"
     },
     {
-        "title": "Machiavelli_''Discourse_or_dialogue_concerning_our_language''_1515",
-        "file": "books/Machiavelli_''Discourse_or_dialogue_concerning_our_language''_1515.pdf",
-        "cover": "covers/Machiavelli_''Discourse_or_dialogue_concerning_our_language''_1515.jpg"
+        "title": "Nietzsche   The Joyful Wisdom",
+        "file": "books/Nietzsche   The Joyful Wisdom.pdf",
+        "cover": "covers/Nietzsche   The Joyful Wisdom.jpg"
     },
     {
-        "title": "Nietzsche - The Joyful Wisdom",
-        "file": "books/Nietzsche - The Joyful Wisdom.pdf",
-        "cover": "covers/Nietzsche - The Joyful Wisdom.jpg"
+        "title": "Nietzsche Beyond Good and Evil",
+        "file": "books/Nietzsche Beyond Good and Evil.pdf",
+        "cover": "covers/Nietzsche Beyond Good and Evil.jpg"
     },
     {
-        "title": "Nietzsche-Beyond-Good-and-Evil",
-        "file": "books/Nietzsche-Beyond-Good-and-Evil.pdf",
-        "cover": "covers/Nietzsche-Beyond-Good-and-Evil.jpg"
+        "title": "Nietzsche Human All Too Human by Nietzsche",
+        "file": "books/Nietzsche Human All Too Human by Nietzsche.pdf",
+        "cover": "covers/Nietzsche Human All Too Human by Nietzsche.jpg"
     },
     {
-        "title": "Nietzsche-Human-All-Too-Human-by-Nietzsche",
-        "file": "books/Nietzsche-Human-All-Too-Human-by-Nietzsche.pdf",
-        "cover": "covers/Nietzsche-Human-All-Too-Human-by-Nietzsche.jpg"
+        "title": "Nietzsche The Birth of Tragedy",
+        "file": "books/Nietzsche The Birth of Tragedy.pdf",
+        "cover": "covers/Nietzsche The Birth of Tragedy.jpg"
     },
     {
-        "title": "Nietzsche-The-Birth-of-Tragedy",
-        "file": "books/Nietzsche-The-Birth-of-Tragedy.pdf",
-        "cover": "covers/Nietzsche-The-Birth-of-Tragedy.jpg"
+        "title": "Philosophy 101 From Plato and Socrates to Ethics and Metaphysics",
+        "file": "books/Philosophy 101 From Plato and Socrates to Ethics and Metaphysics.pdf",
+        "cover": "covers/Philosophy 101 From Plato and Socrates to Ethics and Metaphysics.jpg"
     },
     {
-        "title": "Philosophy_101_From_Plato_and_Socrates_to_Ethics_and_Metaphysics",
-        "file": "books/Philosophy_101_From_Plato_and_Socrates_to_Ethics_and_Metaphysics.pdf",
-        "cover": "covers/Philosophy_101_From_Plato_and_Socrates_to_Ethics_and_Metaphysics.jpg"
-    },
-    {
-        "title": "The Book of Five Rings - Miyamoto, Musashi",
-        "file": "books/The Book of Five Rings - Miyamoto, Musashi.pdf",
-        "cover": "covers/The Book of Five Rings - Miyamoto, Musashi.jpg"
+        "title": "The Book of Five Rings   Miyamoto, Musashi",
+        "file": "books/The Book of Five Rings   Miyamoto, Musashi.pdf",
+        "cover": "covers/The Book of Five Rings   Miyamoto, Musashi.jpg"
     },
     {
         "title": "The Book Of Man",
