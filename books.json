@@ -1,8 +1,18 @@
 [
     {
+        "title": "cashvertising",
+        "file": "books/cashvertising.pdf",
+        "cover": "covers/cashvertising.jpg"
+    },
+    {
         "title": "CREATIVITY",
         "file": "books/CREATIVITY.pdf",
         "cover": "covers/CREATIVITY.jpg"
+    },
+    {
+        "title": "Eugene M Schwartz Breakthrough Advertising 2004 BY VAWZINE VIP",
+        "file": "books/Eugene M Schwartz Breakthrough Advertising 2004 BY VAWZINE VIP.pdf",
+        "cover": "covers/Eugene M Schwartz Breakthrough Advertising 2004 BY VAWZINE VIP.jpg"
     },
     {
         "title": "Friedrich Nietzsche Twilight of the Idols or How to Philosophize",
@@ -58,6 +68,11 @@
         "title": "The Book Of Man",
         "file": "books/The Book Of Man.pdf",
         "cover": "covers/The Book Of Man.jpg"
+    },
+    {
+        "title": "The Millionaire Master Plan PDF",
+        "file": "books/The Millionaire Master Plan PDF.pdf",
+        "cover": "covers/The Millionaire Master Plan PDF.jpg"
     },
     {
         "title": "The Rebel",
