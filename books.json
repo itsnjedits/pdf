@@ -1,13 +1,23 @@
 [
     {
+        "title": "Bodhidharma - The Greatest Zen Master",
+        "file": "books/Bodhidharma - The Greatest Zen Master.pdf",
+        "cover": "covers/Bodhidharma - The Greatest Zen Master.jpg"
+    },
+    {
         "title": "cashvertising",
         "file": "books/cashvertising.pdf",
         "cover": "covers/cashvertising.jpg"
     },
     {
-        "title": "CREATIVITY",
-        "file": "books/CREATIVITY.pdf",
-        "cover": "covers/CREATIVITY.jpg"
+        "title": "Christianity - The Deadliest Poison and Zen - The Antidote to All",
+        "file": "books/Christianity - The Deadliest Poison and Zen - The Antidote to All.pdf",
+        "cover": "covers/Christianity - The Deadliest Poison and Zen - The Antidote to All.jpg"
+    },
+    {
+        "title": "Communism and Zen Fire, Zen Wind",
+        "file": "books/Communism and Zen Fire, Zen Wind.pdf",
+        "cover": "covers/Communism and Zen Fire, Zen Wind.jpg"
     },
     {
         "title": "Eugene M Schwartz Breakthrough Advertising 2004 BY VAWZINE VIP",
@@ -18,6 +28,11 @@
         "title": "Friedrich Nietzsche Twilight of the Idols or How to Philosophize",
         "file": "books/Friedrich Nietzsche Twilight of the Idols or How to Philosophize.pdf",
         "cover": "covers/Friedrich Nietzsche Twilight of the Idols or How to Philosophize.jpg"
+    },
+    {
+        "title": "Hsin Hsin Ming - The Book of Nothing",
+        "file": "books/Hsin Hsin Ming - The Book of Nothing.pdf",
+        "cover": "covers/Hsin Hsin Ming - The Book of Nothing.jpg"
     },
     {
         "title": "Machiavelli   Castruccio Castracani",
@@ -65,23 +80,8 @@
         "cover": "covers/The Book of Five Rings   Miyamoto, Musashi.jpg"
     },
     {
-        "title": "The Book Of Man",
-        "file": "books/The Book Of Man.pdf",
-        "cover": "covers/The Book Of Man.jpg"
-    },
-    {
         "title": "The Millionaire Master Plan PDF",
         "file": "books/The Millionaire Master Plan PDF.pdf",
         "cover": "covers/The Millionaire Master Plan PDF.jpg"
-    },
-    {
-        "title": "The Rebel",
-        "file": "books/The Rebel.pdf",
-        "cover": "covers/The Rebel.jpg"
-    },
-    {
-        "title": "The Secret",
-        "file": "books/The Secret.pdf",
-        "cover": "covers/The Secret.jpg"
     }
 ]
